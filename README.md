@@ -12,6 +12,17 @@ Este projeto é um sistema web de controle financeiro pessoal desenvolvido em Py
 - Persistência dos dados em arquivos CSV
 - Interface responsiva e moderna
 
+### Demonstração visual
+
+![Tela 1](MyBudget/assets/pg01.png)  
+*Dashboard inicial com resumo de receitas e despesas*
+
+![Tela 2](MyBudget/assets/pg02.png)  
+*Gráfico de despesas por categoria*
+
+![Tela 3](MyBudget/assets/pg03.png)  
+*Tabela de extrato detalhado*
+
 ## Estrutura do Projeto
 
 ```
