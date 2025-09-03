@@ -2,7 +2,6 @@ from dash import html, dcc
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import pandas as pd
-
 from app import app
 from components import sidebar, dashboards, extratos
 from my_globals import df_receitas, df_despesas, cat_receita, cat_despesa
@@ -52,7 +51,4 @@ def render_page(pathname):
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8050)
-
-
-
 

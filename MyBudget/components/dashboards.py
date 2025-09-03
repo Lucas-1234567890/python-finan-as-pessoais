@@ -185,11 +185,18 @@ def update_output(data_receita, data_despesa, receita, despesa):
         df_despesas = df_despesas[df_despesas['categoria'].isin(despesa)]
 
     # Agrupa
+    df_receitas['data'] = pd.to_datetime(df_receitas['data'], errors='coerce')
+    df_despesas['data'] = pd.to_datetime(df_despesas['data'], errors='coerce')
     df_rs = df_receitas.groupby('data')['valor'].sum().rename('Receita')
     df_ds = df_despesas.groupby('data')['valor'].sum().rename('Despesa')
 
-    # Junta
+    # Junta e preenche datas faltantes
     df_acum = pd.concat([df_rs, df_ds], axis=1).fillna(0)
+    df_acum = df_acum.sort_index()
+    # Preenche datas faltantes no range
+    if not df_acum.empty:
+        full_range = pd.date_range(df_acum.index.min(), df_acum.index.max(), freq='D')
+        df_acum = df_acum.reindex(full_range, fill_value=0)
     df_acum['Acum'] = df_acum['Receita'] - df_acum['Despesa']
     df_acum['Acum'] = df_acum['Acum'].cumsum()
 
